@@ -1,0 +1,89 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Active Casting
+:: Settings
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+@font-face {
+    font-family: 'TF2';
+    src: url('TF2secondary.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'TF2Build';
+    src: url('tf2build.ttf') format('truetype');
+}
+
+body, html {
+    height: 100%;
+    background-image: url('../images/subtle_grunge_light.png');
+    color: #f5e7de;
+    font-family: 'TF2', sans-serif;
+    font-size: 20px;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #f5e7de;
+    font-family: 'TF2Build', 'TF2', sans-serif;
+    text-align: center;
+}
+a { color: #768a88; text-decoration: underline; }
+
+.red { color: #bd3b3b; }
+.blu { color: #5b7a8c; }
+
+#container {
+    background-image: url('../images/subtle_grunge.png');
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+#container > header h1 {
+    text-align: center;
+    border-bottom: 3px solid #f5e7de;
+    margin: 0;
+    padding: 20px 15px;
+}
+#container > footer li {
+    list-style: none;
+    border-top: 3px solid #f5e7de;
+    padding-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+/* -----------------------------------------
+   Active Casting
+----------------------------------------- */
+
+#map { height: 450px; }
+#map canvas {
+    width: 434px; height: 300px;
+    border: 3px solid #f5e7de;
+    border-radius: 5px;
+}
+
+#upcoming-events {
+    font-size: 80%;
+    height: 450px;
+    overflow-y: scroll;
+}
+#upcoming-events li { list-style: none; }
+#upcoming-events li .timer {
+    font-family: monospace;
+    text-align: right;
+    display: inline-block;
+    width: 2.5em;
+}
+
+/* -----------------------------------------
+   Settings
+----------------------------------------- */
+
+
