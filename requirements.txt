@@ -2,5 +2,5 @@ Flask==0.9
 gevent==0.13.8
 gevent-websocket==0.3.6
 greenlet==0.4.0
--e git://github.com/gavinwahl/uwsgi-websockets.git#egg=uwsgi-websockets
+gunicorn==0.17.2
 Fabric==1.5.3
