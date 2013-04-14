@@ -14,6 +14,7 @@ defmodule CompTool.Mixfile do
 
   defp deps do
     [ { :ranch, github: "extend/ranch", tag: "0.8.1" },
-      { :cowboy, github: "extend/cowboy" } ]
+      { :cowboy, github: "extend/cowboy" },
+      { :mimetypes, github: "spawngrid/mimetypes" } ]
   end
 end
