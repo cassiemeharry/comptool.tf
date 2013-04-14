@@ -19,12 +19,11 @@ defmodule CompTool.Mixfile do
 
       { :mimetypes, github: "spawngrid/mimetypes" },
 
-      { :ibrowse, github: "cmullaparthi/ibrowse" },
-      { :openid, github: "brendonh/erl_openid" },
-
       { :base64url, github: "dvv/base64url" },
       { :termit, github: "dvv/termit" },
-      { :stable, github: "dvv/stable" }
+      { :stable, github: "dvv/stable" },
+
+      { :yamler, github: "superbobry/yamler" },
     ]
   end
 end

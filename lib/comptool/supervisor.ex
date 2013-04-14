@@ -6,7 +6,7 @@ defmodule CompTool.Supervisor do
   end
 
   def init([]) do
-    children = [worker(:openid_srv, [CompTool])]
+    children = []
     supervise children, strategy: :one_for_one
   end
 end
