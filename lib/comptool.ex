@@ -4,6 +4,7 @@ defmodule CompTool do
   def start(_type, _args) do
     dispatch = :cowboy_router.compile([
       {:_, [
+        {"/login", CompTool.LoginHandler, []},
         {"/", :cowboy_static, [
           directory: {:priv_dir, CompTool, ["static"]},
           file: "index.html",
@@ -19,7 +20,17 @@ defmodule CompTool do
     {:ok, _} = :cowboy.start_http(
       :http, 100,
       [port: 5000],
-      [env: [dispatch: dispatch]]
+      [
+        env: [
+          dispatch: dispatch,
+          session_opts: { :cowboy_cookie_session, {"sid", "my secret", 1000, "/"}}
+        ],
+        middlewares: [
+          :cowboy_router,
+          :cowboy_session,
+          :cowboy_handler
+        ]
+      ]
     )
     CompTool.Supervisor.start_link
   end

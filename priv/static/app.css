@@ -1,1 +1,2 @@
-body > .container { margin-top: 40px; }
+/* line-height is 20px, so work in multiples of that */
+body > .container { margin-top: 60px; }
