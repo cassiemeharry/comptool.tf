@@ -4,11 +4,16 @@ defmodule CompTool do
   def start(_type, _args) do
     dispatch = :cowboy_router.compile([
       {:_, [
-        {"/[...]", :cowboy_static, [
+        {"/", :cowboy_static, [
           directory: {:priv_dir, CompTool, ["static"]},
           file: "index.html",
           mimetypes: {fn (x, y) -> :mimetypes.path_to_mimes(x,y) end, :default}
+        ]},
+        {"/[...]", :cowboy_static, [
+          directory: {:priv_dir, CompTool, ["static"]},
+          mimetypes: {fn (x, y) -> :mimetypes.path_to_mimes(x,y) end, :default}
         ]}
+
       ]}
     ])
     {:ok, _} = :cowboy.start_http(
