@@ -1,3 +1,5 @@
 deps/
 ebin/
 *.lock
+*.beam
+priv/settings.yml
