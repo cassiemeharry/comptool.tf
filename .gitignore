@@ -3,3 +3,4 @@ ebin/
 *.lock
 *.beam
 priv/settings.yml
+priv/pages/
