@@ -3,7 +3,7 @@ defmodule CompTool do
 
   defp static_page(path, file // nil) do
     if file == nil do
-      file = path <> ".html" |> String.lstrip(?/) |> String.replace("/", "-")
+      file = (path <> ".html") |> String.lstrip(?/) |> String.replace("/", "-")
     end
     {path, :cowboy_static, [
       directory: {:priv_dir, CompTool, ["pages"]},
