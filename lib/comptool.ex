@@ -42,7 +42,7 @@ defmodule CompTool do
       [
         env: [
           dispatch: dispatch,
-          session_opts: { :cowboy_cookie_session, {"sid", "my secret", 1000, "/"}}
+          session_opts: { :cowboy_cookie_session, {"sid", "my secret", 60 * 60 * 24, "/"}}
         ],
         middlewares: [
           :cowboy_router,
