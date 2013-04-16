@@ -1,0 +1,20 @@
+#!/bin/bash
+
+mkdir -p priv/templates
+mkdir -p priv/pages
+
+header=priv/templates/header.html
+footer=priv/templates/footer.html
+
+echo "Compiling pages..."
+for file in priv/templates/*.md; do
+    echo "  $(basename $file)"
+    html_file="priv/pages/$(basename ${file%.*}).html"
+    cat $header > $html_file
+    cat $file | markdown >> $html_file
+    cat $footer >> $html_file
+done
+echo
+
+echo "Serving..."
+exec mix run --no-halt

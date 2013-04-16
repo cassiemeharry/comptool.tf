@@ -6,7 +6,7 @@ defmodule CompTool do
       file = path <> ".html" |> String.lstrip(?/) |> String.replace("/", "-")
     end
     {path, :cowboy_static, [
-      directory: {:priv_dir, CompTool, ["static"]},
+      directory: {:priv_dir, CompTool, ["pages"]},
       file: file,
       mimetypes: {fn (x, y) -> :mimetypes.path_to_mimes(x,y) end, :default},
     ]}
