@@ -19,7 +19,7 @@
           <li><a href="/about">about</a></li>
         </ul>
         <ul class="nav pull-right user-info" ng-switch="loggedIn">
-          <li ng-switch-when="false"><a style="href="/login">
+          <li ng-switch-when="false"><a href="/login">
             <img style="vertical-align: middle" class="pull-right" src="/images/sits_small.png">
           </a></li>
           <li class="logged-in" ng-switch-when="true"><a><img ng-src="{{ steamInfo.avatar }}"> {{ steamInfo.personaname }}</a></li>
