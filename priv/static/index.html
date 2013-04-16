@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-us" ng-app>
 <head>
-  <title>comptool.tf test</title>
+  <title>comptool.tf</title>
   <meta charset="utf-8">
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
   <link href="/app.css" rel="stylesheet">
@@ -12,23 +12,29 @@
 <body>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="container" ng-controller="LoginCtrl">
         <a class="brand" href="/">comptool.tf</a>
         <ul class="nav">
-          <li class="active"><a href="/">home</a></li>
           <li><a href="/casters">casters</a></li>
+          <li><a href="/about">about</a></li>
         </ul>
-        <ul class="nav pull-right">
-          <li><a href="/login">
+        <ul class="nav pull-right user-info" ng-switch="loggedIn">
+          <li ng-switch-when="false"><a href="/login">
             <img style="vertical-align: middle" class="pull-right" src="/images/sits_small.png">
           </a></li>
+          <li ng-switch-when="true"><a><img ng-src="{{ steamInfo.avatar }}"> {{ steamInfo.personaname }}</a></li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="container">
+  <div id="main" class="container">
     <h1>It works!</h1>
     <p>Served by Cowboy</p>
+  </div>
+  <div id="main-footer">
+    <div class="container">
+      <p>comptool.tf is <a href="http://www.steampowered.com/">Powered by Steam</a><a href="http://en.wikipedia.org/wiki/Steam_engine">.</a></p>
+    </div>
   </div>
 </body>
 </html>

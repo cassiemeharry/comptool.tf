@@ -20,6 +20,10 @@ defmodule CompTool do
     conf_file = Path.join([priv_dir, "settings.yml"])
     {:ok, [config]} = :yaml.load_file(binary_to_list(conf_file), [:implicit_atoms])
 
+    api = [
+      {"/api/user", CompTool.API.User, config},
+    ]
+
     static_pages = [
       static_page("/", "index.html"),
       static_page("/about"),
@@ -33,7 +37,7 @@ defmodule CompTool do
       {:_, [
         {"/login", CompTool.LoginHandler, config},
         {"/login-return", CompTool.LoginHandler, config},
-      ] ++ static_pages}
+      ] ++ api ++ static_pages}
     ]
     dispatch = :cowboy_router.compile(routes)
     {:ok, _} = :cowboy.start_http(

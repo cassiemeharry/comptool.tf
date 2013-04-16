@@ -9,7 +9,7 @@ defmodule CompTool.Mixfile do
 
   def application do
     [ mod: { CompTool, [] },
-      applications: [:cowboy] ]
+      applications: [:cowboy, :ibrowse] ]
   end
 
   defp deps do
@@ -24,6 +24,10 @@ defmodule CompTool.Mixfile do
       { :stable, github: "dvv/stable" },
 
       { :yamler, github: "superbobry/yamler" },
+
+      { :jsx, github: "talentdeficit/jsx" },
+
+      { :ibrowse, github: "cmullaparthi/ibrowse" },
     ]
   end
 end
