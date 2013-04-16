@@ -1,6 +1,17 @@
 defmodule CompTool do
   use Application.Behaviour
 
+  defp static_page(path, file // nil) do
+    if file == nil do
+      file = path <> ".html" |> String.lstrip(?/) |> String.replace("/", "-")
+    end
+    {path, :cowboy_static, [
+      directory: {:priv_dir, CompTool, ["static"]},
+      file: file,
+      mimetypes: {fn (x, y) -> :mimetypes.path_to_mimes(x,y) end, :default},
+    ]}
+  end
+
   def start(_type, _args) do
     priv_dir = Path.join(
       Path.dirname(__FILE__) |> Path.dirname,
@@ -8,21 +19,23 @@ defmodule CompTool do
     )
     conf_file = Path.join([priv_dir, "settings.yml"])
     {:ok, [config]} = :yaml.load_file(binary_to_list(conf_file), [:implicit_atoms])
-    dispatch = :cowboy_router.compile([
+
+    static_pages = [
+      static_page("/", "index.html"),
+      static_page("/about"),
+      {"/[...]", :cowboy_static, [
+        directory: {:priv_dir, CompTool, ["static"]},
+        mimetypes: {fn (x, y) -> :mimetypes.path_to_mimes(x,y) end, :default}
+      ]},
+    ]
+
+    routes = [
       {:_, [
         {"/login", CompTool.LoginHandler, config},
         {"/login-return", CompTool.LoginHandler, config},
-        {"/", :cowboy_static, [
-          directory: {:priv_dir, CompTool, ["static"]},
-          file: "index.html",
-          mimetypes: {fn (x, y) -> :mimetypes.path_to_mimes(x,y) end, :default}
-        ]},
-        {"/[...]", :cowboy_static, [
-          directory: {:priv_dir, CompTool, ["static"]},
-          mimetypes: {fn (x, y) -> :mimetypes.path_to_mimes(x,y) end, :default}
-        ]}
-      ]}
-    ])
+      ] ++ static_pages}
+    ]
+    dispatch = :cowboy_router.compile(routes)
     {:ok, _} = :cowboy.start_http(
       :http, 100,
       [port: 5000],
