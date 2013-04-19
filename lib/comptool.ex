@@ -12,13 +12,31 @@ defmodule CompTool do
     ]}
   end
 
-  def start(_type, _args) do
+  defp init_db() do
+    {:ok, pid} = :sqlite3.open(:comptool_data)
+    :sqlite3.sql_exec_script(
+      pid, """
+CREATE TABLE IF NOT EXISTS sessions (
+    sid TEXT NOT NULL UNIQUE ON CONFLICT IGNORE,
+    data BLOB
+);
+"""
+    )
+  end
+
+  defp get_settings() do
     priv_dir = Path.join(
       Path.dirname(__FILE__) |> Path.dirname,
       "priv"
     )
     conf_file = Path.join([priv_dir, "settings.yml"])
     {:ok, [config]} = :yaml.load_file(binary_to_list(conf_file), [:implicit_atoms])
+    config
+  end
+
+  def start(_type, _args) do
+    init_db()
+    config = get_settings()
 
     api = [
       {"/api/user", CompTool.API.User, config},
@@ -50,8 +68,9 @@ defmodule CompTool do
         ],
         middlewares: [
           :cowboy_router,
-          :cowboy_session,
-          :cowboy_handler
+          CompTool.Middleware.RequestLogger,
+          CompTool.Middleware.Session,
+          :cowboy_handler,
         ]
       ]
     )

@@ -1,6 +1,8 @@
 defmodule CompTool.Util.Auth do
   def ensure_id(req, steam_override // nil) do
-    {session, req} = :cowboy_session.get(req)
+    {sid, req} = :cowboy_req.cookie("sid", req, nil)
+    session = CompTool.Util.Session.get(sid)
+
     if ! Keyword.keyword?(session) do
       session = Keyword.new()
     end
@@ -20,7 +22,7 @@ defmodule CompTool.Util.Auth do
     end
 
     session = Keyword.merge(session, [ids: ids])
-    req = :cowboy_session.set(session, req)
+    CompTool.Util.Session.set!(sid, session)
 
     {ids, req}
   end

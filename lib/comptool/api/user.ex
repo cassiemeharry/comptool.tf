@@ -16,6 +16,9 @@ defmodule CompTool.API.User do
       resp = Keyword.put(resp, :loggedIn, false)
     end
 
+    {sid, req} = :cowboy_req.cookie("sid", req, nil)
+    _ = CompTool.Util.Session.get(sid)
+
     {:ok, req} = CompTool.Util.json_response(resp, req)
     {:ok, req, config}
   end

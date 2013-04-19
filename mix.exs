@@ -9,7 +9,7 @@ defmodule CompTool.Mixfile do
 
   def application do
     [ mod: { CompTool, [] },
-      applications: [:cowboy, :ibrowse] ]
+      applications: [:cowboy, :ibrowse, :sqlite3] ]
   end
 
   defp deps do
@@ -19,15 +19,14 @@ defmodule CompTool.Mixfile do
 
       { :mimetypes, github: "spawngrid/mimetypes" },
 
-      { :base64url, github: "dvv/base64url" },
-      { :termit, github: "dvv/termit" },
-      { :stable, github: "dvv/stable" },
-
       { :yamler, github: "superbobry/yamler" },
 
       { :jsx, github: "talentdeficit/jsx" },
 
       { :ibrowse, github: "cmullaparthi/ibrowse" },
+
+      { :sqlite3, github: "alexeyr/erlang-sqlite3", tag: "v1.0.1" },
+      { :uuid, github: "travis/erlang-uuid" },
     ]
   end
 end
