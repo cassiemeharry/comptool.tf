@@ -4,3 +4,4 @@ ebin/
 *.beam
 priv/settings.yml
 priv/pages/
+comptool_data.db
