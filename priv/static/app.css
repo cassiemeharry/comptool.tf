@@ -1,7 +1,0 @@
-/* line-height is 20px+10px, so work in multiples of that */
-html, body { min-height: 80%; }
-.navbar-fixed-top .user-info li.logged-in > a { padding: 4px 15px; }
-.navbar-fixed-top .user-info li.logged-in > a > img { border-radius: 5px; margin-right: .5em; }
-#main { margin-top: 60px; margin-bottom: 70px; }
-#main-footer { position: fixed; bottom: 0; width: 100%; height: 50px; padding: 10px inherit; background-color: #f0f0f0; }
-#main-footer > .container { margin: 0 auto; text-align: center; }
