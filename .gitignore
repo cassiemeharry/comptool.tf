@@ -1,14 +1,5 @@
-# Standard Erlang/Elixir stuff
-deps/
-ebin/
-*.lock
-*.beam
-
-# Private instance data
-priv/settings.yml
-priv/pages/
-comptool_data.db
-
-# Deploy files
-fabfile.py
-.venv
+/ebin
+/deps
+/tmp/dev
+/tmp/test
+erl_crash.dump
