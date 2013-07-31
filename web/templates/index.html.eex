@@ -1,10 +1,28 @@
 <div class="row">
   <div class="large-12 columns">
     <h1>Welcome to comptool.tf</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <p>A short description of what this site is about.</p>
+
+    <p>This is a collection of tools dedicated to making competitive TF2 bigger
+    and better in the long run. Not to be confused with
+    <a href="http://comp.tf/">comp.tf</a>, a wiki dedicated to competitve TF2.
+    </p>
+
+    <p>The current focus of these tools is on
+    <a href="http://ugcleague.com/">UGC Highlander</a>, but as soon as the
+    basics are done I'll be expanding to cover all the major leagues, such as
+    <a href="http://news.esea.net/tf2/">ESEA</a> and
+    <a href="http://etf2l.org/">ETF2L</a>.</p>
+
+    <h2>For Teams:</h2>
+
+    <p>Running a team is a hassle, but much of it can be automated. This site
+    can prepare your server for a scrim and will eventually be able to
+    automatically schedule scrims between teams registered here.</p>
+
+    <h2>For Casters:</h2>
+
+    <p>The quality of a sport's casters can make or break a sport's viewship. By
+    having quality tools, we can raise the bar and bring competitive TF2 to a
+    wider audience.</p>
   </div>
 </div>
