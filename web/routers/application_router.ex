@@ -8,9 +8,11 @@ defmodule ApplicationRouter do
     conn.fetch([:cookies, :params])
   end
 
-  # It is common to break your Dynamo in many
-  # routers forwarding the requests between them
-  # forward "/posts", to: PostsRouter
+  forward "/api/v1", to: ApiRouter
+
+  get "/favicon.ico" do
+    conn.resp(404, "")
+  end
 
   get "/" do
     conn = conn.assign(:title, "Welcome to Dynamo!")

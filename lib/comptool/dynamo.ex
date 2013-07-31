@@ -16,11 +16,11 @@ defmodule Comptool.Dynamo do
     static_route: "/static"
 
   # Uncomment the lines below to enable the cookie session store
-  # config :dynamo,
-  #   session_store: Session.CookieStore,
-  #   session_options:
-  #     [ key: "_comptool_session",
-  #       secret: "c8K2gWdGs0Yj7X5mFV4zf5HyOOKbBcYSNdfeGD00fz/htiN5WCV+NdNoLg5MXriu"]
+  config :dynamo,
+    session_store: Session.CookieStore,
+    session_options:
+      [ key: "_comptool_session",
+        secret: "c8K2gWdGs0Yj7X5mFV4zf5HyOOKbBcYSNdfeGD00fz/htiN5WCV+NdNoLg5MXriu"]
 
   # Default functionality available in templates
   templates do
