@@ -1,0 +1,79 @@
+@import "foundation/scss/foundation/components/global"
+@import "foundation/scss/foundation/components/grid"
+@import "foundation/scss/foundation/components/visibility"
+@import "foundation/scss/foundation/components/type"
+@import "foundation/scss/foundation/components/buttons"
+@import "foundation/scss/foundation/components/forms"
+// @import "foundation/scss/foundation/components/custom-forms"
+// @import "foundation/scss/foundation/components/button-groups"
+// @import "foundation/scss/foundation/components/dropdown-buttons"
+// @import "foundation/scss/foundation/components/split-buttons"
+// @import "foundation/scss/foundation/components/flex-video"
+// @import "foundation/scss/foundation/components/section"
+@import "foundation/scss/foundation/components/top-bar"
+// @import "foundation/scss/foundation/components/reveal"
+@import "foundation/scss/foundation/components/alert-boxes"
+// @import "foundation/scss/foundation/components/breadcrumbs"
+// @import "foundation/scss/foundation/components/keystrokes"
+// @import "foundation/scss/foundation/components/labels"
+// @import "foundation/scss/foundation/components/inline-lists"
+@import "foundation/scss/foundation/components/panels"
+@import "foundation/scss/foundation/components/progress-bars"
+// @import "foundation/scss/foundation/components/side-nav"
+// @import "foundation/scss/foundation/components/sub-nav"
+@import "foundation/scss/foundation/components/switch"
+// @import "foundation/scss/foundation/components/tables"
+// @import "foundation/scss/foundation/components/thumbs"
+// @import "foundation/scss/foundation/components/tooltips"
+@import "foundation/scss/foundation/components/dropdown"
+
+.caster-tool
+  @include grid-row
+  .random-stats
+    @include grid-column(6)
+    .stat-box
+      @include clearfix
+      @include panel
+
+      // Animation
+      position: relative
+    .stats-box-animate
+      transition: 1s ease-out max-height
+      max-height: 200px
+      position: relative
+      overflow: hidden
+      .meter
+        transition: 30s linear width
+        width: 100%
+      &.stats-box-animate-enter .meter
+        width: 0%
+      &.stats-box-animate-enter,
+      &.stats-box-animate-leave-active
+        max-height: 0
+
+  .upcoming-events
+    @include grid-column(6)
+    .event-feed
+      position: relative
+      .event
+        @include grid-column(12)
+        @include alert($panel-bg)
+        @include clearfix
+        z-index: 100
+        &.medic-killed
+          @include alert($primary-color)
+          z-index: 110
+        > p
+          margin-bottom: 0
+          @include grid-column(10)
+          &.countdown
+            @include grid-column(2)
+            text-align: right
+
+        // Animation
+        position: absolute
+        &.event-animate-enter
+          transition: 30s linear top
+          top: 1000px
+          &.event-animate-enter-active
+            top: 0

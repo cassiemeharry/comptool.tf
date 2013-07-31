@@ -1,0 +1,21 @@
+<div class="caster-tool" ng-controller="CasterToolLiveCtrl" ng-cloak>
+  <div class="random-stats">
+    <h2>Random Stats</h2>
+    <div ng-repeat="stat in stats" class="stats-box-animate" ng-animate="'stats-box-animate'">
+      <div class="stat-box">
+        <div class="progress"><span class="meter"></span></div>
+        <h5>{{ stat.name }} (<span class="tf-{{ stat.color | lowercase }}">{{ stat.color | uppercase }} {{ stat['class'] }})</h5>
+        <p>{{ stat.text }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="upcoming-events">
+    <h2>Upcoming Events</h2>
+    <div class="event-feed">
+      <div ng-repeat="event in events | orderBy:'ttl':true" class="event" ng-class="event.type" ng-animate="{enter: 'event-animate-enter'}">
+        <p>{{ event.text }}</p>
+        <p class="countdown">{{ event.ttl | number:0 }} s</p>
+      </div>
+    </div>
+  </div>
+</div>

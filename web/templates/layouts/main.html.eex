@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="comptool">
+<head>
+  <title>comptool.tf</title>
+  <script src="/static/js/vendor/custom.modernizr.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/comptool.css">
+</head>
+<body ng-cloak>
+  <%= render "top_bar.html" %>
+  <%= content_for(:template) %>
+  <script src="/static/js/vendor/jquery.js"></script>
+  <script src="/static/js/foundation/foundation.js"></script>
+  <script src="/static/js/foundation/foundation.topbar.js"></script>
+  <script>
+$(document).foundation();
+  </script>
+  <script src="/static/js/angular-1.1.5.min.js"></script>
+  <script src="/static/js/comptool.js"></script>
+</body>
+</html>
