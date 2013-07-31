@@ -37,35 +37,31 @@ app.controller("CasterToolLiveCtrl", ["$scope", "$timeout", function ($scope, $t
     }, 30 * 1000);
   };
 
-  $timeout(function () {
-    $scope.addEvent("player-killed", "Test message here");
-  }, 1000);
-  $timeout(function () {
-    $scope.addEvent("player-killed", "Test message here");
-  }, 2000);
-  $timeout(function () {
-    $scope.addEvent("medic-killed", "Important test message here");
-  }, 3500);
-  $timeout(function () {
-    $scope.addEvent("player-killed", "Test message here");
-  }, 8000);
-  $timeout(function () {
-    $scope.addEvent("player-killed", "Test message here");
-  }, 9500);
-  $timeout(function () {
-    $scope.addEvent("player-killed", "Test message here");
-  }, 12000);
+  var randomEvent = function () {
+    var type, text;
+    if (Math.random() < 0.1) {
+      type = "medic-killed";
+      text = "Important test message here";
+    } else {
+      type = "player-killed";
+      text = "Test message here";
+    }
+    $scope.addEvent(type, text);
+    $timeout(randomEvent, ((Math.random() * 10)+0.5)*1000);
+  };
+  $timeout(randomEvent);
 
-  $timeout(function () {
-    $scope.addStat("Player 1", "Demo", "BLU", "Some stat here");
-  }, 0);
-  $timeout(function () {
-    $scope.addStat("Player 2", "Medic", "RED", "Some stat here");
-  }, 5*1000);
-  $timeout(function () {
-    $scope.addStat("Player 3", "Pyro", "BLU", "Some stat here");
-  }, 10*1000);
-  $timeout(function () {
-    $scope.addStat("Player 4", "Scout", "RED", "Some stat here");
-  }, 15*1000);
+  var randomChoice = function (array) {
+    var l = array.length;
+    return array[Math.floor(Math.random() * l)];
+  };
+  var randomStat = function () {
+    var player = "Player " + randomChoice([1, 2, 3, 4, 5, 6]);
+    var cls = randomChoice(["Scout", "Soldier", "Pyro", "Demo", "Heavy", "Engineer", "Medic", "Sniper", "Spy"]);
+    var team = randomChoice(["RED", "BLU"]);
+    $scope.addStat(player, cls, team, "Some stat here...");
+    $timeout(randomStat, 30 * 1000);
+  };
+  $timeout(randomStat);
+
 }]);
