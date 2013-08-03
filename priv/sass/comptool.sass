@@ -27,6 +27,9 @@
 // @import "foundation/scss/foundation/components/tooltips"
 @import "foundation/scss/foundation/components/dropdown"
 
+html
+  overflow-y: scroll
+
 .caster-tool
   @include grid-row
   .random-stats
@@ -38,11 +41,13 @@
       // Animation
       position: relative
     .stats-box-animate
+      -webkit-transition: 1s ease-out max-height
       transition: 1s ease-out max-height
       max-height: 200px
       position: relative
       overflow: hidden
       .meter
+        -webkit-transition: 30s linear width
         transition: 30s linear width
         width: 100%
       &.stats-box-animate-enter .meter
@@ -73,7 +78,8 @@
         // Animation
         position: absolute
         &.event-animate-enter
-          transition: 30s linear top
+          -webkit-transition: 30.1s linear top
+          transition: 30.1s linear top
           top: 1000px
           &.event-animate-enter-active
             top: 0
