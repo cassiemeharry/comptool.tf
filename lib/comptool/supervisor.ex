@@ -9,6 +9,7 @@ defmodule Comptool.Supervisor do
     tree = [
         supervisor(Comptool.Dynamo, [[max_restarts: 5, max_seconds: 5]]),
         supervisor(Comptool.PluginReceiver.Supervisor, [2667]),
+        supervisor(Comptool.Websocket.Supervisor, [2667]),
     ]
     supervise(tree, strategy: :one_for_one)
   end

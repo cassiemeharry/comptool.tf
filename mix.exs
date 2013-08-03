@@ -13,13 +13,14 @@ defmodule Comptool.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [ applications: [:cowboy, :dynamo],
+    [ applications: [:cowboy, :dynamo, :socket],
       mod: { Comptool, [] } ]
   end
 
   defp deps do
     [ { :cowboy, github: "extend/cowboy" },
       { :dynamo, github: "elixir-lang/dynamo" },
-      { :json, github: "cblage/elixir-json"  } ]
+      { :json, github: "cblage/elixir-json"  },
+      { :socket, github: "meh/elixir-socket" } ]
   end
 end

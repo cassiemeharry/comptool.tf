@@ -1,16 +1,64 @@
 var app = angular.module("comptool", []);
 
-app.controller("CasterToolLiveCtrl", ["$scope", "$timeout", function ($scope, $timeout) {
+app.factory("EventStream", ["$q", "$rootScope", "$timeout", function ($q, $rootScope, $timeout) {
+  var EventStream = {};
+
+  var callbacks = [];
+  var ws = null;
+  var ip = null;
+
+  EventStream._setupWS = function () {
+    var self = this;
+    if (ip === null) {
+      console.warn("Can't start websocket connection without TF2 server IP");
+      return;
+    }
+    if (ws instanceof WebSocket) {
+      ws.close();
+      return;
+    }
+    var location = "ws://" + document.domain + ":2667/events/"
+    console.log("creating websocket connection to " + location);
+    ws = new WebSocket(location, "chat");
+
+    ws.onclose = function () {
+      ws = null;
+      self._setupWS();
+    };
+    ws.onopen = function () {
+      ws.send(ip);
+    };
+
+    ws.onmessage = function (event) {
+      $rootScope.$apply(function () {
+        callbacks.forEach(function (cb) {
+          cb(JSON.parse(event.data));
+        });
+      });
+    };
+  }
+
+  EventStream.addListener = function (callback) {
+    callbacks.push(callback);
+  };
+
+  EventStream.setTF2ServerIP = function (serverIP) {
+    ip = serverIP;
+    this._setupWS();
+  }
+
+  return EventStream;
+}]);
+
+app.controller("CasterToolLiveCtrl", ["$scope", "$timeout", "EventStream", function ($scope, $timeout, EventStream) {
   $scope.stats = [];
   $scope.events = [];
 
-//  $scope.Math = Math
-  $scope.addEvent = function (type, text, ttl) {
-    ttl = ttl || 30;
+  $scope.addEvent = function (type, text) {
     var event = {
       type: type,
       text: text,
-      occursAt: (new Date().getTime() / 1000) + ttl
+      occursAt: (new Date().getTime() / 1000) + 30
     };
     var countdown = function () {
       event.ttl = event.occursAt - (new Date().getTime() / 1000);
@@ -24,44 +72,16 @@ app.controller("CasterToolLiveCtrl", ["$scope", "$timeout", function ($scope, $t
     countdown();
   };
 
-  $scope.addStat = function (name, cls, color, text) {
-    var stat = {
-      name: name,
-      'class': cls,
-      color: color,
-      text: text
-    };
+  EventStream.addListener(function (message) {
+    $scope.addEvent(message.event_type, message.data.attacker + " killed " + message.data.victim);
+  });
+
+  $scope.addStat = function (stat) {
     $scope.stats.push(stat);
     $timeout(function () {
       $scope.stats.shift();
     }, 30 * 1000);
   };
 
-  var randomEvent = function () {
-    var type, text;
-    if (Math.random() < 0.1) {
-      type = "medic-killed";
-      text = "Important test message here";
-    } else {
-      type = "player-killed";
-      text = "Test message here";
-    }
-    $scope.addEvent(type, text);
-    $timeout(randomEvent, ((Math.random() * 10)+0.5)*1000);
-  };
-  $timeout(randomEvent);
-
-  var randomChoice = function (array) {
-    var l = array.length;
-    return array[Math.floor(Math.random() * l)];
-  };
-  var randomStat = function () {
-    var player = "Player " + randomChoice([1, 2, 3, 4, 5, 6]);
-    var cls = randomChoice(["Scout", "Soldier", "Pyro", "Demo", "Heavy", "Engineer", "Medic", "Sniper", "Spy"]);
-    var team = randomChoice(["RED", "BLU"]);
-    $scope.addStat(player, cls, team, "Some stat here...");
-    $timeout(randomStat, 30 * 1000);
-  };
-  $timeout(randomStat);
-
+  EventStream.setTF2ServerIP("127.0.0.1");
 }]);
