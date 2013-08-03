@@ -18,7 +18,8 @@ defmodule Comptool.Mixfile do
   end
 
   defp deps do
-    [ { :dynamo, "0.1.0.dev", github: "elixir-lang/dynamo" },
-      { :exjson, github: "guedes/exjson", app: false } ]
+    [ { :cowboy, github: "extend/cowboy" },
+      { :dynamo, github: "elixir-lang/dynamo" },
+      { :json, github: "cblage/elixir-json"  } ]
   end
 end
