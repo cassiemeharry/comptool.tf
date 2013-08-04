@@ -1,4 +1,4 @@
 [submodule "priv/sass/foundation"]
 	path = priv/sass/foundation
-	url = git@github.com:zurb/foundation
+	url = https://github.com/zurb/foundation.git
 	branch = scss-standalone
