@@ -54,9 +54,12 @@ defmodule Comptool.PluginReceiver do
   defp erl_ip_to_binary({a,b,c,d}), do: "#{a}.#{b}.#{c}.#{d}"
 
   defp hashdict_to_keyword(hd) when is_record(hd, HashDict) do
-    Keyword.new(hd, function do
-      {k, v} when is_record(v, HashDict) -> {binary_to_atom(k), hashdict_to_keyword(v)}
-      {k, v} -> {binary_to_atom(k), v}
+    Keyword.new(hd, fn {k, v} ->
+      if is_record(v, HashDict) do
+        {binary_to_atom(k), hashdict_to_keyword(v)}
+      else
+        {binary_to_atom(k), v}
+      end
     end)
   end
 

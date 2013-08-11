@@ -1,8 +1,7 @@
 defmodule ApiRouter do
   use Dynamo.Router
 
-  defp send_error(conn, code // 400, error) do
-    help = ""
+  defp send_error(conn, code // 400, error, help // "") do
     halt! send(conn, [
       status: "error",
       error: error,
@@ -11,7 +10,7 @@ defmodule ApiRouter do
   end
 
   defp send(conn, data, code // 200) do
-    conn.resp(code, JSON.generate(data))
+    conn.resp(code, JSON.encode data)
   end
 
   prepare do
@@ -20,7 +19,7 @@ defmodule ApiRouter do
 
     unless get_session(conn, :steam_id) do
       send_error(conn, 401, "Not logged in",
-        "Open a browser to /login and sign in with Steam to get your auth cookie",
+        "Open a browser to /login and sign in with Steam to get your auth cookie"
       )
     end
 
