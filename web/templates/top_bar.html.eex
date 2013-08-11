@@ -14,9 +14,12 @@
           <!-- <%= if @section != "fans" do %><li><a href="/fans">For Fans</a></li><% end %> -->
         </ul>
       </li>
-    </ul><%= if @top_links do %>
-    <ul class="right"><%= lc link inlist @top_links do %>
-      <li><a href="/<%= @section %>/<%= link %>"><%= String.capitalize link %></a></li><% end %>
-    </ul><% end %>
+    </ul>
+    <ul class="right"><%= if @top_links do %><%= lc link inlist @top_links do %>
+      <li><a href="/<%= @section %>/<%= link %>"><%= String.capitalize link %></a></li><% end %><% end %>
+<%= if @logged_in do %>
+      <li><a><img src="<%= @steam_info[:avatar] %>" /> <%= @steam_info[:name] %></a></li><% else %>
+      <li><a href="/login">Log in with Steam</a></li><% end %>
+    </ul>
   </section>
 </nav>
