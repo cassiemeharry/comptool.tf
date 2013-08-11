@@ -22,6 +22,16 @@ defmodule Comptool.Dynamo do
       [ key: "_comptool_session",
         secret: "c8K2gWdGs0Yj7X5mFV4zf5HyOOKbBcYSNdfeGD00fz/htiN5WCV+NdNoLg5MXriu"]
 
+  config :server, # painful hack to get around this being defined at compile time
+    port: (
+      Comptool.Settings.init(nil)
+      |> tuple_to_list
+      |> Enum.at(1)
+      |> Keyword.get(Mix.env)
+      |> Keyword.get(:web)
+      |> Keyword.get(:web_tcp_port)
+    )
+
   # Default functionality available in templates
   templates do
     use Dynamo.Helpers

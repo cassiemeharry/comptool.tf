@@ -4,7 +4,6 @@ config :dynamo,
   reload_modules: false
 
 config :server,
-  port: 8888,
   acceptors: 100,
   max_connections: 10000
 

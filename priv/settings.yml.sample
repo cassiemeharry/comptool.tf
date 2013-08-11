@@ -9,9 +9,9 @@ dev:
 
   web:
     # Which ports to listen on.
-    # The HTTP server is configured in lib/comptool/environments/*.exs
     plugin_udp_port: 2667
     websocket_tcp_port: 2667
+    web_tcp_port: 4000
 
 # Production settings
 prod:
@@ -21,3 +21,4 @@ prod:
   web:
     plugin_udp_port: 2667
     websocket_tcp_port: 2667
+    web_tcp_port: 80
