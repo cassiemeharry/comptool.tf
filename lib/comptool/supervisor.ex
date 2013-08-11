@@ -6,10 +6,14 @@ defmodule Comptool.Supervisor do
   end
 
   def init(nil) do
+    settings_filename = Path.expand("../../priv/settings.yml", __DIR__)
+    { :ok, [settings] } = :yaml.load_file(settings_filename, [:implicit_atoms])
+
     tree = [
         supervisor(Comptool.Dynamo, [[max_restarts: 5, max_seconds: 5]]),
-        supervisor(Comptool.PluginReceiver.Supervisor, [2667]),
-        supervisor(Comptool.Websocket.Supervisor, [2667]),
+        worker(Comptool.Settings, [settings]),
+        supervisor(Comptool.PluginReceiver.Supervisor, [settings[:web][:plugin_udp_port]]),
+        supervisor(Comptool.Websocket.Supervisor, [settings[:web][:websocket_tcp_port]]),
     ]
     supervise(tree, strategy: :one_for_one)
   end

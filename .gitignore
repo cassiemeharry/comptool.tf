@@ -5,3 +5,4 @@ ebin
 erl_crash.dump
 .sass-cache
 mix.lock
+priv/settings.yml

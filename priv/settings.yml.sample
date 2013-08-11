@@ -1,0 +1,23 @@
+# Copy this to "settings.yml" and modify with your own information
+
+# Development settings
+dev:
+  steam:
+    # Connection to Steam API.
+    # Get your own key at https://steamcommunity.com/dev/
+    api_key: "0123456789ABCDEF0123456789ABCDEF" # <- not actually my key
+
+  web:
+    # Which ports to listen on.
+    # The HTTP server is configured in lib/comptool/environments/*.exs
+    plugin_udp_port: 2667
+    websocket_tcp_port: 2667
+
+# Production settings
+prod:
+  steam:
+    api_key: "0123456789ABCDEF0123456789ABCDEF"
+
+  web:
+    plugin_udp_port: 2667
+    websocket_tcp_port: 2667
