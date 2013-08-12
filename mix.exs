@@ -25,6 +25,7 @@ defmodule Comptool.Mixfile do
       { :yamler, github: "superbobry/yamler"},
       { :httpotion, github: "myfreeweb/httpotion" },
       { :epgsql, github: "wg/epgsql" },
+      { :sendmail, github: "richcarl/sendmail", compile: "mkdir -p ebin && erlc -o ebin sendmail.erl", app: false },
     ]
   end
 end
