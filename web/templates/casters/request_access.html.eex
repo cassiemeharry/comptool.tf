@@ -1,0 +1,11 @@
+<div class="caster-tool">
+  <form action="/casters/request-access" method="POST">
+    <h1>Request Caster Access</h1>
+    <p>The casting tool, unfortunately, is invite only due to the possibility of
+    cheating.</p>
+    <p>If you're a caster, press the button below. It'll shoot off an email to
+    bluejeans telling him to activate your account. He'll look at your profile,
+    and assuming you're actually a caster, you should gain acess within a day.</p>
+    <p><button type="submit">Request access</button></p>
+  </form>
+</div>
