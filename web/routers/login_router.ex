@@ -29,6 +29,9 @@ defmodule LoginRouter do
 
     conn = put_session(conn, :steam_info, steam_info)
 
+    user = Comptool.DB.User.User[steam_id: binary_to_integer(api_data["steamid"]), name: api_data["personaname"], avatar_url: api_data["avatar"]]
+    Comptool.DB.User.save(user)
+
     redirect conn, to: "/"
   end
 end
