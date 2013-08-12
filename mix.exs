@@ -13,7 +13,7 @@ defmodule Comptool.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [ applications: [:cowboy, :dynamo, :socket, :yamler, :httpotion],
+    [ applications: [:cowboy, :dynamo, :socket, :yamler, :httpotion, :epgsql],
       mod: { Comptool, [] } ]
   end
 
@@ -24,6 +24,7 @@ defmodule Comptool.Mixfile do
       { :socket, github: "meh/elixir-socket" },
       { :yamler, github: "superbobry/yamler"},
       { :httpotion, github: "myfreeweb/httpotion" },
+      { :epgsql, github: "wg/epgsql" },
     ]
   end
 end
